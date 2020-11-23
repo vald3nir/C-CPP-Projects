@@ -1,0 +1,35 @@
+Observações:
+
+sudo screen /dev/ttyUSB0 115200
+user: root
+password: 12345678
+configure_edison --setup
+http://172.70.10.125
+
+Tensão de polarização do canal direito  -> 2,278 V   
+Tensão de polarização do canal esquerdo -> 2,293 V   		
+
+======================================================================================================
+
+Gravação de arquivo wave diretamente pela alsa
+
+arecord -f S16_LE -c 2 -r 48000 -d 1 amostra.wav
+
+======================================================================================================
+
+Configuração da biblioteca alsaaudio (gravação de áudio em wav)
+
+comando para ver o card do dispositivo: aplay -l
+
+sudo nano /etc/asound.conf
+
+pcm.!default {
+        type hw
+        card 1
+}
+
+ctl.!default {
+        type hw
+        card 1
+}
+
